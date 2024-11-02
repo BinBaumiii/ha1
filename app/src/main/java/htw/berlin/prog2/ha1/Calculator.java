@@ -46,8 +46,8 @@ public class Calculator {
      */
     public void pressClearKey() {
         screen = "0";
-        latestOperation = "";
-        latestValue = 0.0;
+        //latestOperation = "";  soll eigentlich erst nach 2 mal ClearKey reseted werden
+        //latestValue = 0.0;
     }
 
     /**
