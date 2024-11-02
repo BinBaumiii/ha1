@@ -130,5 +130,27 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
     }
+
+    // 2. roter Test
+    @Test
+    @DisplayName("should display results of multiple Additions")
+    void testMultipleAdditions() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(5);
+        calc.pressDigitKey(0);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(5);
+        calc.pressDigitKey(0);
+        calc.pressBinaryOperationKey("+"); // BinaryOperation speichert nur den latestValue 50
+        calc.pressDigitKey(5);             // und rechnet somit weiter mit 50+50 anstatt 100+50
+        calc.pressDigitKey(0);             // wie es eigentlich richtig ist
+        calc.pressEqualsKey();
+
+        String expected = "150";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
 }
 
