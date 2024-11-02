@@ -90,6 +90,8 @@ class CalculatorTest {
 
 
     //TODO hier weitere Tests erstellen
+
+    // Gruener Test
     @Test
     @DisplayName("should display result after after dividing two negative multi digit numbers")
     void testNegativeDivision() {
@@ -107,6 +109,23 @@ class CalculatorTest {
         calc.pressEqualsKey();
 
         String expected = "5";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    // 1. roter Test
+    @Test
+    @DisplayName("should reset Screen to 0 without deleting LatestValue/ LatestOperation")
+    void testClearKey() {
+        Calculator calc = new Calculator();
+        calc.pressDigitKey(8);
+        calc.pressBinaryOperationKey("+"); // BinaryOperation speichert hier 8 als latestValue
+        calc.pressClearKey();              // und + als latestOperation. Diese sollten bei einmaligem
+        calc.pressDigitKey(2);             // drueken von ClearKey nicht resetet nwerden
+        calc.pressEqualsKey();
+
+        String expected = "10";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
